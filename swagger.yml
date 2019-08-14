@@ -1,0 +1,224 @@
+swagger: "2.0"
+info:
+  description: "This is a sample api to manager employeers"
+  version: "1.0.0"
+  title: "Employeer Manager API"
+schemes:
+- "http"
+paths:
+  /api/departments:
+    get:
+      description: list departments
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: false
+        - in: query
+          name: limit
+          type: integer
+          required: false
+        - in: query
+          name: offset
+          type: integer
+          required: false
+      responses:
+        200:
+          description: list
+          schema:
+            type: array
+            items: 
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                created_at:
+                  type: string
+            example:
+              - id: 1
+                name: 'IT'
+                created_at: '2019-08-14T03:12:19.920410Z'
+    post:
+      description: create department
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+        - in: body
+          name: employee
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+            example:
+              name: 'IT'
+      responses:
+        201:
+          description: success on created
+          schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                created_at:
+                  type: string
+              example:
+                id: 1
+                name: 'IT'
+                created_at: '2019-08-14T03:12:19.920410Z'
+  /api/employees:
+    get:
+      description: list employees
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: false
+        - in: query
+          name: limit
+          type: integer
+          required: false
+        - in: query
+          name: offset
+          type: integer
+          required: false
+      responses:
+        200:
+          description: list
+          schema:
+            type: array
+            items: 
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                email:
+                  type: string
+                created_at:
+                  type: string
+                department:
+                  type: string
+            example:
+              - id: 1
+                name: 'jeff'
+                email: 'apolinario.kl@gmail.com'
+                created_at: '2019-08-14T03:12:19.920410Z'
+                department: 'IT'
+    post:
+      description: create employee
+      consumes:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+        - in: body
+          name: employee
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              email:
+                type: string
+              department:
+                type: integer
+            example:
+              name: 'jeff'
+              email: 'apolinario.kl@gmail.com'
+              department: 1
+      responses:
+        201:
+          description: success on created
+          schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                email:
+                  type: string
+                created_at:
+                  type: string
+                department:
+                  type: integer
+              example:
+                id: 1
+                name: 'jeff'
+                email: 'apolinario.kl@gmail.com'
+                created_at: '2019-08-14T03:12:19.920410Z'
+                department: 1
+  /api/employees/{id}:
+    get:
+      description: find one employee
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: false
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        200:
+          description: find one
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              email:
+                type: string
+              created_at:
+                type: string
+              department:
+                type: string
+            example:
+                id: 1
+                name: 'jeff'
+                email: 'apolinario.kl@gmail.com'
+                created_at: '2019-08-14T03:12:19.920410Z'
+                department: 'IT'
+    put:
+      description: update one employee
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        204:
+          description: No Content
+    delete:
+      description: delete one employee
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        204:
+          description: No Content
