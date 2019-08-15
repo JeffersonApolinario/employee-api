@@ -6,6 +6,38 @@ info:
 schemes:
 - "http"
 paths:
+  /api/token:
+    post:
+      description: get token
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user and password
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+            example:
+              username: admin
+              password: "1234567"
+      responses:
+        200:
+          description: return tokens
+          schema:
+            type: object
+            properties:
+              refresh:
+                type: string
+              access:
+                type: string
+            example:
+              refresh: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTY1ODI3ODI4LCJqdGkiOiI3NjQ1ZTc5MWYwYTM0NTA0YjUxNDUwYTU4MjVjYTQyNiIsInVzZXJfaWQiOjF9.MEbQbliv69nTIxcNWp2hPOu7nD0MLtWld_PmOwIY32g"
+              access: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTY1ODI3ODI4LCJqdGkiOiI3NjQ1ZTc5MWYwYTM0NTA0YjUxNDUwYTU4MjVjYTQyNiIsInVzZXJfaWQiOjF9.MEbQbliv69nTIxcNWp2hPOu7nD0MLtWld_PmOwIY32g"
   /api/departments:
     get:
       description: list departments
